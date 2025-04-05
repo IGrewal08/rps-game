@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-        UI
-            - Play game by clicking on buttons
-            - No five round logic
-            - 3 buttons (for rock paper scissors) (list)
-            - 1 event listener for buttons on list
-            - add div to display results using DOM (change all console.log to DOM methods)
-
-            - display running score (using div)
-            - Run game until on player reaches 5 points
-    
-    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
@@ -27,17 +15,19 @@
             <div id="computer_score">Computer Score</div>
         </div>
 
-        <p class="rounds">1</p>
+        <p class="round">1</p>
 
         <div class="choice">
             <div id="player_choice">Choice</div>
             <div id="computer_choice">Choice</div>
         </div>
 
-        <div id="buttons">
-            <button class="Rock">Rock</button>
-            <button class="Rock">Paper</button>
-            <button class="Rock">Scissors</button>
+        <div class="status"></div>
+
+        <div class="buttons">
+            <button id="Rock">Rock</button>
+            <button id="Paper">Paper</button>
+            <button id="Scissors">Scissors</button>
         </div>
         </div>
 

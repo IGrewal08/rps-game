@@ -1,65 +1,64 @@
 let humanScore = 0;
 let computerScore = 0;
+let round = 1;
 
+const game_status = document.querySelector(".status");
 
+function getcomputerChoice() {
 
+    const choices = ["Rock", "Paper", "Scissors"];
 
+    let randNum = Math.floor(Math.random() * choices.length);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getComputerChoice() {
-
-    let randNum = Math.floor(Math.random() * 3);
-
-    switch (randNum) {
-        case 0:
-            return("Rock");
-        case 1:
-            return("Paper");
-        case 2:
-            return("Scissor");
-    }
+    return choices[randNum];
 }
 
 function getHumanChoice() {
 
-    return prompt("Enter guess here: ").toLowerCase();
+    const buttons = document.querySelectorAll(".buttons");
+
+    buttons.forEach((button) => {
+
+        button.addEventListener("click", (event) => {
+
+            const clickedId = event.target;
+
+            if (clickedId.id === "Rock") {
+                playRound("Rock");
+            } else if (clickedId.id === "Paper") {
+                playRound("Paper");
+            } else {
+                playRound("Scissors");
+            }
+
+        });
+    });
 }
 
-function playGame() {
+function playRound(humanChoice) {
 
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
+    if (humanScore === 5 || computerScore === 5) {
+        alert("GAME OVER!");
+    } else {
+        const computerSelection = getcomputerChoice();
 
-    playRound(humanSelection, computerSelection);
-
-    function playRound(humanChoice, computerChoice) {
-
-        let finalChoice = (humanChoice.charAt(0).toUpperCase() + humanChoice.substring(1));
-
-        if (finalChoice  === computerChoice) {
-            console.log(`You drew! ${finalChoice} matches ${computerChoice}.`);
-        } else if ((finalChoice === "Rock" && computerChoice === "Scissor") || (finalChoice === "Paper" && computerChoice === "Rock") || (finalChoice === "Scissor" && computerChoice === "Paper")) {
-            console.log(`You won! ${finalChoice} beats ${computerChoice}.`);
+        if (humanChoice  === computerSelection) {
+            game_status.textContent = `You drew! ${humanChoice} matches ${computerSelection}.`;
+        } else if ((humanChoice === "Rock" && computerSelection === "Scissors") || (humanChoice === "Paper" && computerSelection === "Rock") || (humanChoice === "Scissors" && computerSelection === "Paper")) {
+            game_status.textContent = `You won! ${humanChoice} beats ${computerSelection}.`;
             humanScore++;
         } else {
-            console.log(`You lost! ${finalChoice} loses to ${computerChoice}.`);
+            game_status.textContent = `You lost! ${humanChoice} loses to ${computerSelection}.`;
             computerScore++;
         }
+        document.querySelector("#player_choice").textContent = humanChoice;
+        document.querySelector("#computer_choice").textContent = computerSelection;
+    
+        round++;
+        document.querySelector(".round").textContent = `${round}`;
+        document.querySelector("#player_score").textContent = `Player Score ${humanScore}`;
+        document.querySelector("#computer_score").textContent = `Computer Score ${computerScore}`;
     }
-
-    console.log(humanScore);
-
 }
+
+getHumanChoice();
