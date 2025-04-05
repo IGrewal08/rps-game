@@ -1,6 +1,28 @@
+let humanScore = 0;
+let computerScore = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function getComputerChoice() {
 
     let randNum = Math.floor(Math.random() * 3);
+
     switch (randNum) {
         case 0:
             return("Rock");
@@ -8,17 +30,13 @@ function getComputerChoice() {
             return("Paper");
         case 2:
             return("Scissor");
-        default:
-            return("error");
     }
 }
 
 function getHumanChoice() {
+
     return prompt("Enter guess here: ").toLowerCase();
 }
-
-let humanScore = 0;
-let computerScore = 0;
 
 function playGame() {
 
@@ -44,8 +62,4 @@ function playGame() {
 
     console.log(humanScore);
 
-}
-
-for (let i = 0; i <= 4; i++) {
-    playGame();
 }
